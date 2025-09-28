@@ -1,0 +1,482 @@
+:root {
+    --white: #FFFFFF;
+    --warm-gray: #909293;
+    --black: #000000;
+    --light-black: #333333;
+    --warm-yellow: #FFD700;
+    --warm-yellow-dark: #FFC107;
+    --light-bg: #F8F9FA;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 8rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica Neue', sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+    line-height: 1.4;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--white);
+    border-bottom: 1px solid #e5e5e5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0.1rem/* var(--spacing-xs) 0; Уменьшенный вертикальный отступ */
+}
+
+.header-content {
+    display: flex;
+    justify-content: center; /* логотип слева, контакты справа, навигация по центру */
+    gap: 2rem;
+    align-items: center;
+    padding: 0.1rem 0;
+}
+/* Стили для верхней строки хедера */
+.header-top h1 span {
+    color: var(--warm-yellow-dark);
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    padding: 0; /* Небольшие отступы сверху и снизу */
+}
+
+/* Стили для логотипа */
+.logo {
+    /* flex-shrink: 0; /* Опционально: предотвращает уменьшение логотипа при нехватке места */
+}
+
+.logo-image {
+    height: 80px; /* Установите желаемую высоту */
+    /* width: auto; /* Ширина изменится пропорционально высоте */
+    object-fit: contain; /* Сохраняет пропорции изображения */
+    max-width: 100%; /* Не выходит за пределы родительского блока */
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Стили для контактной информации */
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm); /* Отступ между телефоном и иконками */
+    /* flex-shrink: 0; /* Опционально: предотвращает уменьшение блока контактов */
+}
+
+/* Стили для ссылки с телефоном */
+.contact-info a[href^="tel:"] {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--black);
+    white-space: nowrap; /* Предотвращает разрыв номера */
+}
+
+.contact-info a[href^="tel:"]:hover {
+    transition: all 0.2s;
+    transform: scale(1.2);
+    color: var(--warm-yellow-dark);
+
+}
+
+/* Стили для ссылок-иконок соцсетей */
+.social-icon-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.social-icon {
+    width: 32px; /* Размер иконки */
+    height: 32px;
+    object-fit: cover; /* Заполняет контейнер, обрезая при необходимости */
+    pointer-events: none; /* Иконка не мешает клику по ссылке */
+    transition: opacity 0.2s ease, transform 0.2s ease; /* Плавность анимации */
+}
+
+.social-icon-link:hover .social-icon {
+    opacity: 0.7;
+    transform: scale(1.4);
+}
+
+/* Стили для навигации */
+nav {
+    display: flex;
+    justify-content: center; /* Центрируем меню */
+    align-items: center;
+    margin-top: 0; /* Отступ сверху от предыдущего блока */
+    margin-bottom: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-md); /* Отступ между пунктами меню */
+    justify-content: center; /* Центрируем элементы списка */
+    padding: 0; /* Убираем стандартный отступ */
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 500;
+    transition: all 0.5s;
+    position: relative;
+    padding: 0.4rem 0.2rem;
+    display: inline-block;
+}
+
+nav a:hover {
+    color: var(--warm-yellow);
+}
+
+/* Анимация подчеркивания */
+nav a::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    top: 0;
+    left: 0;
+    background-color: var(--warm-yellow);
+    transition: width 0.5s;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    right: 0;
+    background-color: var(--warm-yellow);
+    transition: width 0.5s;
+}
+
+nav a:hover::before {
+    width: 100%;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a.active {
+    font-weight: bold;
+    /* color: var(--warm-yellow-dark); Используем указанный цвет или #FFC107 как резерв */
+    /* Отключаем анимацию для active ссылки */
+    transition: none;
+}
+
+/* Отключаем hover-эффекты для активной ссылки */
+nav a.active:hover {
+    /* color: var(--warm-yellow-dark); */
+    /* transition оставлен как none, если был установлен выше */
+}
+
+/* Отключаем анимацию подчеркивания для активной ссылки */
+nav a.active::before,
+nav a.active::after {
+    display: none; /* Просто убираем полоски */
+    /* Альтернатива: можно установить width в 0% и убрать transition */
+    /* width: 0%;
+    transition: none; */
+}
+
+/* Кнопка мобильного меню */
+.mobile-menu-btn {
+    display: none; /* Сначала скрыта */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--black);
+    position: absolute; /* Позиционируем отдельно */
+    right: var(--spacing-sm); /* Отступ справа */
+    top: 50%; /* Центрируем по вертикали */
+    transform: translateY(-50%); /* Корректируем позицию */
+}
+
+/* Main Content */
+main {
+    margin-top: 115px; /* Увеличено, чтобы учесть высоту нового хедера */
+}
+
+/* Hero Section */
+.hero {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--black));
+}
+
+.hero h1 {
+    font-size: 4rem;
+    color: var(--white);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.hero h1 span {
+    color: var(--warm-yellow-dark);
+}
+
+.hero h2 {
+    font-size: 1.4rem;
+    color: var(--warm-gray);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 400;
+}
+
+.cta-button {
+    background-color: var(--warm-yellow-dark);
+    color: var(--black);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--black);
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    background-color: var(--black);
+    color: var(--warm-yellow-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+/* Director Section */
+.director {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--light-bg);
+}
+
+.director-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.director-photo {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.director-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.director-text {
+    flex: 2;
+}
+
+.director-text h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Video Section */
+.video-section {
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+/* Poster Section */
+.poster {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--light-bg);
+    text-align: center;
+}
+
+.poster-image {
+    max-width: 600px;
+    margin: 0 auto var(--spacing-md);
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.poster-image img {
+    width: 100%;
+    height: auto;
+    background-color: var(--light-bg);
+    display: block;
+}
+
+/* Footer */
+footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: var(--spacing-lg) 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-section h3 {
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.8rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.1rem;
+}
+
+.footer-section a {
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-section a:hover {
+    color: var(--warm-yellow);
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.map-container {
+    height: 250px;
+    width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: none;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid #333;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block; /* Показываем кнопку на мобильных */
+    }
+
+    nav ul {
+        display: none; /* Скрываем меню по умолчанию */
+        position: absolute;
+        top: 100%; /* Размещаем сразу под хедером */
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: var(--spacing-sm);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        z-index: 1001; /* Повышаем z-index, чтобы меню было поверх других элементов */
+    }
+
+    nav ul.show {
+        display: flex; /* Показываем меню при активации */
+    }
+
+    .header-top {
+        /* flex-wrap: wrap; /* Опционально: разрешить перенос строки на очень узких экранах */
+    }
+
+    .contact-info {
+        /* flex-wrap: wrap; /* Опционально: разрешить перенос контактов */
+        /* justify-content: center; /* Опционально: выравнивать контакты по центру на мобильных */
+        /* gap: var(--spacing-xs); /* Уменьшить отступы */
+    }
+
+    .logo-image {
+        height: 60px; /* Уменьшить размер логотипа на мобильных */
+    }
+
+    .social-icon {
+        width: 24px; /* Уменьшить размер иконок */
+        height: 24px;
+    }
+
+    .director-content {
+        flex-direction: column;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero h2 {
+        font-size: 1.2rem;
+    }
+
+    main {
+        margin-top: 140px; /* Увеличено для мобильных, если меню открыто */
+    }
+}
